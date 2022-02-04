@@ -1,0 +1,79 @@
+name: phxui CI
+
+on:
+  push:
+    branches:
+      - main
+      - ci/**
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04 ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v2.5.1
+
+    - run: yarn install
+
+    - name: Run Lint
+      run: yarn lint-ci
+
+    - name: Run type check
+      run: yarn check-types
+
+    - name: Run Tests
+      run: yarn test:unit
+
+    - name: Run Component tests
+      uses: cypress-io/github-action@v2
+      with:
+        # we have already installed everything
+        install: false
+        # to run component tests we need to use "cypress run-ct"
+        command: yarn cypress run-ct
+
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        # build: yarn build
+        start: yarn serve
+        wait-on: 'http://localhost:8080'
+
+    - name: Build build
+      run: yarn build
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      # Ideally this would upload the zipfile from below - but this action currently does not support this.
+      with:
+        name: phxui
+        path: |
+          dist
+          !dist/**/*.map
+        retention-days: 10
+
+    - name: Zip files for release
+      if: github.event_name == 'release'
+      run: |
+        cd dist/
+        zip -r ../phxui.zip .
+        cd ../
+
+
+    - name: Upload release binaries
+      uses: alexellis/upload-assets@0.3.0
+      if: github.event_name == 'release'
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        asset_paths: '["./phxui.zip"]'

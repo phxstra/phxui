@@ -1,0 +1,12 @@
+---
+version: '3.8'
+services:
+  phxui:
+    build:
+      context: .
+      dockerfile: "./Dockerfile"
+    image: phxui
+    # image: phxstraorg/phxui:main
+    restart: unless-stopped
+    ports:
+      - "8080:80"
