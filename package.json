@@ -15,7 +15,7 @@
     "cy:run-ct": "cypress run-ct"
   },
   "dependencies": {
-    "@cypress/vue": "^2.2.3",
+    "@cypress/vue": "^2.2.4",
     "@vue/composition-api": "^1.4.5",
     "axios": "^0.25.0",
     "bootstrap": "^4.6.0",
