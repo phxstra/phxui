@@ -2059,10 +2059,10 @@
   optionalDependencies:
     prettier "^1.18.2"
 
-"@vue/composition-api@^1.4.5":
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.4.5.tgz#a15f5407708a6566ade81965476218dfaa4faa29"
-  integrity sha512-2Esgcc0EGBqyck4b/yrP2VnGmMr6cPYAE4nF3StIzP8+umNAbRZqBJDc6AhE58whPRt3lHAPf83eppgW7a2dUg==
+"@vue/composition-api@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.6.3.tgz#3b1486608f1682e8bc03c71e1fd58013b0b7a093"
+  integrity sha512-f0TgOKqU460QyVLp5URi8LMVJ3eE3/3OuFrytItSNmp5FbisS67jVvUZg7pzIzZonqc4chG1SNS48PMOsH7a4g==
 
 "@vue/eslint-config-airbnb@^5.1.0":
   version "5.3.0"
