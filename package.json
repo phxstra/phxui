@@ -41,7 +41,7 @@
     "vuex-composition-helpers": "^1.1.0"
   },
   "devDependencies": {
-    "@cypress/webpack-dev-server": "^1.8.0",
+    "@cypress/webpack-dev-server": "^2.4.1",
     "@types/echarts": "^4.9.13",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
